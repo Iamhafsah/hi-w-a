@@ -529,10 +529,10 @@ function AccessCard({ guest, onChangeRSVP }) {
     <div className="floating-star star-one">♡</div>
 <div className="floating-star star-two">♡</div>
 
-<div className="access-corner corner-top-left">♡</div>
+{/* <div className="access-corner corner-top-left">♡</div>
 <div className="access-corner corner-top-right">♡</div>
 <div className="access-corner corner-bottom-left">♡</div>
-<div className="access-corner corner-bottom-right">♡</div>
+<div className="access-corner corner-bottom-right">♡</div> */}
 
 {/* <div className="access-top-ornament">♡</div> */}
 
