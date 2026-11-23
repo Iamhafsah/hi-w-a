@@ -187,26 +187,26 @@ function GuestInvitation() {
   }, [token]);
 
   // Submit the guest's RSVP to Google Sheets
-  async function handleRSVP(response) {
-    if (saving) return;
+  // async function handleRSVP(response) {
+  //   if (saving) return;
 
-    try {
-      setSaving(true);
-      setError("");
+  //   try {
+  //     setSaving(true);
+  //     setError("");
 
-      await submitRSVP(token, response);
+  //     await submitRSVP(token, response);
 
-      setStatus(response);
-      setEditingRSVP(false);
+  //     setStatus(response);
+  //     setEditingRSVP(false);
 
-    } catch (err) {
-      setError(
-        err.message || "Your response could not be saved. Please try again."
-      );
-    } finally {
-      setSaving(false);
-    }
-  }
+  //   } catch (err) {
+  //     setError(
+  //       err.message || "Your response could not be saved. Please try again."
+  //     );
+  //   } finally {
+  //     setSaving(false);
+  //   }
+  // }
 
   if (loading) {
     return (
@@ -229,90 +229,12 @@ function GuestInvitation() {
     );
   }
 
- if (status === "accepted" && !editingRSVP) {
+
   return (
     <AccessCard
       guest={guest}
       onChangeRSVP={() => setEditingRSVP(true)}
     />
-  );
-}
-
-  return (
-    <main className="guest-page">
-      <div className="guest-card">
-        <div className="mt-2">
-          <WeddingMonogram />
-        </div>
-
-        <p className="eyebrow dark">A personal invitation for</p>
-
-        <h1 className="guest-name">{guest.name}</h1>
-
-        <p className="guest-description">
-          You are cordially invited to celebrate the Aqdun
-          Nikah and Walimah of
-        </p>
-
-        <h2 className="guest-couple">
-          Hafsah <span>&</span> Ibrahim
-        </h2>
-
-        <p className="guest-date">{wedding.date}</p>
-
-        <div className="guest-divider" />
-
-        {status === "declined" && (
-          <p className="guest-question ">
-            You previously declined this invitation.
-            You can still change your response.
-          </p>
-        )}
-
-        {status === "accepted" && editingRSVP && (
-          <p className="guest-question ">
-            You previously accepted this invitation.
-            Would you like to change your response?
-          </p>
-        )}
-
-        {status === "pending" && (
-          <p className="guest-question">
-            Will you be attending?
-          </p>
-        )}
-
-        <div className="gap-[12px] flex flex-col md:flex-row w-full justify-center items-center ">
-          <button
-            className="accept-button"
-            onClick={() => handleRSVP("accepted")}
-            disabled={saving}
-          >
-            <Check size={17} />
-            {saving ? "Saving..." : "Accept invitation"}
-          </button>
-
-          <button
-            className="decline-button"
-            onClick={() => handleRSVP("declined")}
-            disabled={saving}
-          >
-            <X size={17} />
-            {saving ? "Saving..." : "Decline invitation"}
-          </button>
-        </div>
-
-        {error && (
-          <p className="rsvp-error" role="alert">
-            {error}
-          </p>
-        )}
-
-        <Link to="/" className="back-link">
-          View wedding details
-        </Link>
-      </div>
-    </main>
   );
 }
 
@@ -498,7 +420,13 @@ function AccessCard({ guest, onChangeRSVP }) {
       context.fillText("SATURDAY, 5 DECEMBER 2026", 450, 950);
 
       context.font = "20px Arial";
-      context.fillText("NEBO HALL · LAGOS", 450, 1000);
+      context.fillText("NEBO HALL", 450, 1000);
+
+      context.font = "18px Arial";
+      context.fillText("ORDNANCE HEADQUARTERS, ABALTI BARRACKS", 450, 1040);
+
+      context.font = "18px Arial";
+      context.fillText("OJUELEGBA, SURULERE, LAGOS", 450, 1070);
 
 
       canvas.toBlob((blob) => {
@@ -527,22 +455,22 @@ function AccessCard({ guest, onChangeRSVP }) {
       <div className="ambient ambient-two" />
     
     <div className="floating-star star-one">♡</div>
-<div className="floating-star star-two">♡</div>
+    <div className="floating-star star-two">♡</div>
 
 
       <div className="access-container access-reveal">
         <WeddingMonogram />
 
-        <div className="success-message">
+        {/* <div className="success-message">
           <span className="success-icon"><Check size={16} /></span>
           Invitation accepted
-        </div>
+        </div> */}
 
         <p className="eyebrow dark">Your personal access card</p>
-        <h2 className="access-heading">You're on the guest list.</h2>
+        {/* <h2 className="access-heading">You're on the guest list.</h2>
         <p className="access-intro">
           Your invitation is ready. Keep this pass safe for your arrival.
-        </p>
+        </p> */}
 
         <div className="access-card">
           <div className="access-card-pattern" />
@@ -583,8 +511,8 @@ function AccessCard({ guest, onChangeRSVP }) {
             </div>
 
             <div className="access-footer">
-              <p>NEBO HALL · LAGOS</p>
-              <p>ONE GUEST</p>
+              <p>NEBO HALL</p>
+              <p>Ordnance Headquarters, Abalti Barracks, Ojuelegba, Surulere, Lagos.</p>
             </div>
             {/* <div className="access-bottom-ornament">❧</div> */}
           </div>
@@ -595,14 +523,14 @@ function AccessCard({ guest, onChangeRSVP }) {
           <Download size={17} />
           Download your access card
         </button>
-
+{/* 
         <button
           className="back-link"
           onClick={onChangeRSVP}
           style={{ border: "none", background: "transparent", cursor: "pointer" }}
         >
           Change your RSVP response
-        </button>
+        </button> */}
         </div>
 
         <p className="access-note">
